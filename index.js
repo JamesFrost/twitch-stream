@@ -1,14 +1,14 @@
 const _ircServer = "irc.chat.twitch.tv";
 const _ircPort = 6667;
-const _irc = require('slate-irc');
-const _net = require('net');
+const _irc = require( 'slate-irc' );
+const _net = require( 'net' );
 
 // key:type
 const _requiredOptions = 
 {
 	user : 'string',
 	pass : 'string',
-	channel : 'string',
+	channel : 'object',
 	data : 'function'
 };
 
@@ -27,8 +27,9 @@ const _verifyOptions = function( options )
 const _processDataPacket = function( packet )
 {
 	return {
+		user 	: packet.prefix.split( '!' )[ 0 ],
 		message : packet.trailing,
-		user : packet.prefix.split( '!' )[ 0 ]
+		channel : packet.params.slice( 1 )
 	};
 };
 
@@ -45,7 +46,6 @@ const _logger = function( options )
 		});
 	};
 };
-
 
 const _pong = function()
 {
@@ -65,18 +65,18 @@ exports.connect = function( options )
 {
 	_verifyOptions( options );
 
-	var stream = _net.connect({
+	const stream = _net.connect({
 		port: _ircPort,
 		host: _ircServer
 	});
 
-	var client = _irc( stream );
+	const client = _irc( stream );
 
 	client.pass( options.pass );
 	client.nick( options.user );
 	client.user( options.user, options.user );
 
-	client.join( '#' + options.channel );
+	client.join( options.channel.map( s => '#' + s ) );
 
 	client.use( _logger( options ) );
 	client.use( _pong() );
