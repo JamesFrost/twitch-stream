@@ -4,23 +4,34 @@ const _irc = require( 'slate-irc' );
 const _net = require( 'net' );
 
 // key:type
-const _requiredOptions = 
+const _requiredParams = 
 {
 	user : 'string',
 	pass : 'string',
+};
+
+const _optionalParams =
+{
 	channel : 'object',
-	data : 'function'
+	data : 'function',
+	done : 'function'
 };
 
 const _verifyOptions = function( options )
 {
-	for( var index in _requiredOptions )
+	for( var index in _requiredParams )
 	{
 		if( typeof options[ index ] === "undefined" )
 			throw "Missing '" + index + "' from options";
 
-		if( typeof options[ index ] !== _requiredOptions[ index ] )
-			throw "'" + index + "' must be of type '" + _requiredOptions[ index ] + "'";
+		if( typeof options[ index ] !== _requiredParams[ index ] )
+			throw "'" + index + "' must be of type '" + _requiredParams[ index ] + "'";
+	}
+
+	for( var index in _optionalParams )
+	{
+		if( typeof options[ index ] !== "undefined" && typeof options[ index ] !== _optionalParams[ index ] )
+			throw "'" + index + "' must be of type '" + _optionalParams[ index ] + "'";
 	}
 };
 
@@ -76,8 +87,13 @@ exports.connect = function( options )
 	client.nick( options.user );
 	client.user( options.user, options.user );
 
-	client.join( options.channel.map( s => '#' + s ) );
-
-	client.use( _logger( options ) );
+	client.join( options.channel );
+	
 	client.use( _pong() );
+
+	if( typeof options.data !== "undefined" )
+		client.use( _logger( options ) );
+
+	if( typeof options.done !== "undefined" )
+		options.done( client );
 };
