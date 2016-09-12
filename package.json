@@ -1,6 +1,6 @@
 {
   "name": "twitch-stream",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "description": "Stream Twitch chat",
   "main": "index.js",
   "scripts": {
@@ -13,6 +13,6 @@
   },
     "repository": {
     "type": "git",
-    "url": "github.com/JamesFrost/twitch-stream"
+    "url": "http://github.com/JamesFrost/twitch-stream"
   }
 }
