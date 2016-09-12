@@ -24,7 +24,7 @@ twitchStream.connect({
    	{
 	        client.part( '#user1' );
 	        client.join( '#user3' );
-    	}
+    }
 });
 ```
 
@@ -34,7 +34,7 @@ Username of Twitch account to use.
 #### ```pass``` (required)
 Password for the account. Passwords for Twitch chat can be generated <a href="http://twitchapps.com/tmi/">here</a>.
 #### ```channel``` (optional)
-Array of channels to initialise the stream with. 
+Array of channels to initialise the stream with. Note that channels have to be prepended with '#'.
 #### ```data``` (optional)
 Called every time a message is posted in one of the connected channels.
 
