@@ -82,7 +82,7 @@ exports.connect = function( options )
 		host: _ircServer
 	});
 
-	const client = _irc( stream );
+	const client = new _streamWrapper( _irc( stream ) );
 
 	client.pass( options.pass );
 	client.nick( options.user );
@@ -96,5 +96,5 @@ exports.connect = function( options )
 		client.use( _logger( options ) );
 
 	if( typeof options.done !== "undefined" )
-		options.done( new _streamWrapper( client ) );
+		options.done( client );
 };
