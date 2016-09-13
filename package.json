@@ -15,5 +15,11 @@
   "repository": {
     "type": "git",
     "url": "http://github.com/JamesFrost/twitch-stream"
-  }
+  },
+    "keywords": [
+    "twitch",
+    "stream",
+    "chat",
+    "irc"
+  ]
 }
