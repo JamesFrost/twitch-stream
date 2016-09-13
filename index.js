@@ -2,6 +2,7 @@ const _ircServer = "irc.chat.twitch.tv";
 const _ircPort = 6667;
 const _irc = require( 'slate-irc' );
 const _net = require( 'net' );
+const _streamWrapper = require( './src/stream-wrapper.js' );
 
 // key:type
 const _requiredParams = 
@@ -95,5 +96,5 @@ exports.connect = function( options )
 		client.use( _logger( options ) );
 
 	if( typeof options.done !== "undefined" )
-		options.done( client );
+		options.done( new _streamWrapper( client ) );
 };

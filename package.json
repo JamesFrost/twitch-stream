@@ -1,6 +1,6 @@
 {
   "name": "twitch-stream",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Stream Twitch chat",
   "main": "index.js",
   "scripts": {
@@ -9,9 +9,10 @@
   "author": "James Frost <hello@jamesfrost.me> (http://jamesfrost.me/)",
   "license": "MIT",
   "dependencies": {
+    "limiter": "1.1.0",
     "slate-irc": "0.9.0"
   },
-    "repository": {
+  "repository": {
     "type": "git",
     "url": "http://github.com/JamesFrost/twitch-stream"
   }
