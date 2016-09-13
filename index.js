@@ -51,7 +51,7 @@ const _logger = function( options )
 	{
 		irc.on( 'data', function( data )
 		{
-			if( data.prefix === 'tmi.twitch.tv' || data.prefix === options.user + '.tmi.twitch.tv' || data.trailing.length === 0 )
+			if( data.prefix === 'tmi.twitch.tv' || data.prefix === options.user + '.tmi.twitch.tv' || data.trailing.length === 0 || data.prefix.split( '!' )[ 0 ].length === 0 )
 				return;
 
 			options.data( _processDataPacket( data ) );
