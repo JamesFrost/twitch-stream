@@ -1,4 +1,4 @@
-# twitch-stream
+# twitch-stream :boom:
 Stream Twitch chat in node js.
 
 ```bash
