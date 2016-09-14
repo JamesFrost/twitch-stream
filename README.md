@@ -22,8 +22,8 @@ twitchStream.connect({
 	},
 	done : function( client )
    	{
-	        client.part( '#user1' );
-	        client.join( '#user3' );
+	    client.part( '#user1' );
+	    client.join( '#user3' );
     }
 });
 ```
