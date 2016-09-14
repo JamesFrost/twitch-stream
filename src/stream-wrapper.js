@@ -183,6 +183,15 @@ function streamWrapper( client )
 		}.bind( this ));
 	};
 
+	this.write = function( msg, callback )
+	{
+		this._addToQueue(function()
+		{
+			this.client.write( msg );
+
+		}.bind( this ), callback);
+	};
+
 	this.use = function( plugin )
 	{
 		plugin( this );
