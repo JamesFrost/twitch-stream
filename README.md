@@ -46,7 +46,5 @@ The interface this object presents is the same as the <a href="https://github.co
 
 This is because the client object enforces <a href="https://github.com/justintv/Twitch-API/blob/master/IRC.md#command--message-limit">the rate limit</a>; commands sent through the client that are over the rate limit are queued (first in, first out) and executed at a later point in time. When the command is executed, the callback is fired.
 
-Note that any plugins you attach to the client using the 'use' function will not have the rate limit enforced.
-
 ## License
 MIT

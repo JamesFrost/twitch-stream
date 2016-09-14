@@ -185,7 +185,12 @@ function streamWrapper( client )
 
 	this.use = function( plugin )
 	{
-		this.client.use( plugin );
+		plugin( this );
+	};
+
+	this.on = function( event, callback )
+	{
+		this.client.on( event, callback );
 	};
 };
 
