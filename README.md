@@ -20,11 +20,15 @@ twitchStream.connect({
 	{
 		console.log( msg );
 	},
+	error : function( err )
+	{
+		console.log( err ); 
+	},
 	done : function( client )
    	{
-	    client.part( '#user1' );
-	    client.join( '#user3' );
-    }
+		client.part( '#user1' );
+		client.join( '#user3' );
+    	}
 });
 ```
 
@@ -45,6 +49,12 @@ Called when a connection has been made. Is passed a <a href="https://github.com/
 The interface this object presents is the same as the <a href="https://github.com/slate/slate-irc/blob/master/docs.md#client">slate-irc client</a>, however all slate-irc client functions that do not have a callback now have an optional callback as the last parameter.
 
 This is because the client object enforces <a href="https://github.com/justintv/Twitch-API/blob/master/IRC.md#command--message-limit">the rate limit</a>; commands sent through the client that are over the rate limit are queued (first in, first out) and executed at a later point in time. When the command is executed, the callback is fired.
+
+#### ```error``` (optional)
+Called when an error occurs. Is passed the error as the first parameter. The close event will occur directly after this event.
+
+#### ```close``` (optional)
+Called when the connection has closed.
 
 ## License
 MIT
