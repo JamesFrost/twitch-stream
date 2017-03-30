@@ -33,7 +33,7 @@ twitchStream.connect({
 ```
 
 ## Parameters
-####```user ``` (required)
+#### ```user ``` (required)
 Username of Twitch account to use.
 #### ```pass``` (required)
 Password for the account. Passwords for Twitch chat can be generated <a href="http://twitchapps.com/tmi/">here</a>.
