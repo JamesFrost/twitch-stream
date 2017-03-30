@@ -82,6 +82,12 @@ exports.connect = function( options )
 		host: _ircServer
 	});
 
+	if( typeof options.close !== "undefined" )
+		stream.on( 'close', options.close );
+	
+	if( typeof options.error !== "undefined" )
+		stream.on( 'error', options.error );
+
 	const client = new _streamWrapper( _irc( stream ) );
 
 	client.pass( options.pass );
